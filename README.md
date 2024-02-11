@@ -7,20 +7,25 @@
 Instructions to this assignment can be found [here](https://reedws.github.io/IT3049C/coursework/labs/chatting-app/).
 - [x] update the assignment checks above to the correct link. - Done Automatically
 ## Checklist:
-- [ ] update the assignment checks above to the correct link
-- [ ] make sure the assignment checks pass
-- [ ] fill out the self evaluation and Reflection
-- [ ] submit the repository link on Canvas
+- [x] update the assignment checks above to the correct link
+- [x] make sure the assignment checks pass
+- [x] fill out the self evaluation and Reflection
+- [x] submit the repository link on Canvas
 
 ## Self-Evaluation:
 
-how many points out of 20 do you deserve on this assignment: 
+how many points out of 20 do you deserve on this assignment: 18
 
 ## Self-Reflection:
 <!-- Write your self-reflection under this line -->
+This assignment was pretty straight forward however I still had some issues towards the end. I enjoyed the HTML/CSS portion of the project, I know it was not the main focus
+but its nice to know how the HTML logic works with the JS to create the application. Regarding why I lose points; my HTML, CSS, and updating messages all work fine but I believe
+there may still be issues with sending messages. The messages dont update until after I've reopened the application. Also I'm not sure why npm test is "skipping" 1 of the tests. 
+The application seems to be working for the most part so I assume theres just an error somewhere.
 
 ### How long it took me to finish this?
-
+About 2 hours.
 
 ## Discussion Questions:
 1. What does the bootstrap `display-4` class do?
+display-4 is like a preset fontsize and line placement that can be used for primary headers.
