@@ -14,11 +14,10 @@ function fetchMessages() {
       .then( response => response.json())
 }
 
-
 async function updateMessages() {
 
   const messages = await fetchMessages();
-  
+
   messages.forEach(message => {
       // Format each message and add it to the formattedMessages string
       formattedMessages += formatMessage(message, nameInput.value);
@@ -87,3 +86,5 @@ sendButton.addEventListener("click", function(sendButtonClickEvent) {
   sendMessages(sender,message);
   myMessage.value = "";
 });
+
+updateMessages();
