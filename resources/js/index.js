@@ -8,25 +8,30 @@ const serverURL = `https://it3049c-chat.fly.dev/messages`;
 const MILLISECONDS_IN_TEN_SECONDS = 10000;
 setInterval(updateMessages, MILLISECONDS_IN_TEN_SECONDS);
 
+
 function fetchMessages() {
   return fetch(serverURL)
       .then( response => response.json())
 }
 
+
 async function updateMessages() {
 
   const messages = await fetchMessages();
-
+  
   messages.forEach(message => {
-      const formattedMessage = formatMessage(message);
-      updateChatBox(formattedMessage);
+      // Format each message and add it to the formattedMessages string
+      formattedMessages += formatMessage(message, nameInput.value);
+  });
+  
+  // Update the chatbox with the formatted messages
+  chatBox.innerHTML = formattedMessages;
 
       let formattedMessages = "";
     messages.forEach(message => {
         formattedMessages += formatMessage(message, nameInput.value);
     });
     chatBox.innerHTML = formattedMessages;
-  })
 }
 
 function formatMessage(message, myNameInput) {
