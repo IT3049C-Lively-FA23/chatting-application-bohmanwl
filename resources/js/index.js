@@ -1,66 +1,64 @@
+// References to HTML elements
 const nameInput = document.getElementById("my-name-input");
-const myMessage = document.getElementById("my-message");
+const messageInput = document.getElementById("my-message");
 const sendButton = document.getElementById("send-button");
 const chatBox = document.getElementById("chat");
 
-const serverURL = `https://it3049c-chat.fly.dev/messages`;
+// URL to the server
+const serverURL = "https://it3049c-chat.fly.dev/messages";
 
-const MILLISECONDS_IN_TEN_SECONDS = 10000;
-setInterval(updateMessages, MILLISECONDS_IN_TEN_SECONDS);
-
-
+// Function to fetch messages from the server
 function fetchMessages() {
-  return fetch(serverURL)
-      .then( response => response.json())
+    return fetch(serverURL)
+        .then(response => response.json());
 }
 
+// Update messages in the chat box
 async function updateMessages() {
-
-  const messages = await fetchMessages();
-
-  messages.forEach(message => {
-      // Format each message and add it to the formattedMessages string
-      formattedMessages += formatMessage(message, nameInput.value);
-  });
-  
-  // Update the chatbox with the formatted messages
-  chatBox.innerHTML = formattedMessages;
-
-      let formattedMessages = "";
+    // Fetch Messages
+    const messages = await fetchMessages();
+    
+    // Loop over the messages, format them, and add them to the chatbox
+    let formattedMessages = "";
     messages.forEach(message => {
         formattedMessages += formatMessage(message, nameInput.value);
     });
     chatBox.innerHTML = formattedMessages;
 }
 
+// Format a single message
 function formatMessage(message, myNameInput) {
-  const time = new Date(message.timestamp);
-  const formattedTime = `${time.getHours()}:${time.getMinutes()}`;
+    const time = new Date(message.timestamp);
+    const formattedTime = `${time.getHours()}:${time.getMinutes()}`;
 
-  if (myNameInput === message.sender) {
-      return `
-      <div class="mine messages">
-          <div class="message">
-              ${message.text}
-          </div>
-          <div class="sender-info">
-              ${formattedTime}
-          </div>
-      </div>
-      `
-  } else {
-      return `
-          <div class="yours messages">
-              <div class="message">
-                  ${message.text}
-              </div>
-              <div class="sender-info">
-                  ${message.sender} ${formattedTime}
-              </div>
-          </div>
-      `
-  }
+    if (myNameInput === message.sender) {
+        return `
+            <div class="mine messages">
+                <div class="message">
+                    ${message.text}
+                </div>
+                <div class="sender-info">
+                    ${formattedTime}
+                </div>
+            </div>
+        `;
+    } else {
+        return `
+            <div class="yours messages">
+                <div class="message">
+                    ${message.text}
+                </div>
+                <div class="sender-info">
+                    ${message.sender} ${formattedTime}
+                </div>
+            </div>
+        `;
+    }
 }
+
+// Call updateMessages to display messages
+updateMessages();
+
 
 function sendMessages(username, text) {
   const newMessage = {
